@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students</title>
+    <style>
+        .student{
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <select name="select" id="select" onchange="loadStudents()">
+            <option value="freshman">Freshman</option>
+            <option value="sophomore">Sophomore</option>
+            <option value="junior">Junior</option>
+            <option value="senior">Senior</option>
+        </select>
+        <div id="content">
+
+        </div>
+    </div>
+    <script>
+        class Student{
+            constructor(name, grade){
+                this.name = name;
+                this.grade = grade;
+            }
+        }
+
+        var studentArr = [new Student("Alvaro", "freshman"), new Student("Gabe", "sophomore"), new Student("Benedict", "freshman"), new Student("Pol", "senior"),
+        new Student("Nathalie", "freshman"), new Student("Apollinard", "junior"), new Student("Apollinard", "senior")
+    ];
+
+    function loadStudents(){
+        var selection = document.getElementById('select').value;
+        var content = document.getElementById("content");
+        content.innerHTML = "";
+        studentArr.map(function(x){
+                if(x.grade == selection){
+                    content.innerHTML += `
+                        <div class="student">
+                            <div>${x.name}</div>
+                            <div>${x.grade}</div>
+                        </div>
+                    `
+                }
+            }
+        );
+    }
+
+    </script>
+</body>
+</html>
